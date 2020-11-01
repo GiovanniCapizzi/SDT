@@ -1,6 +1,41 @@
 SOUND DESIGN TOOLKIT: INSTALLATION INSTRUCTIONS
 ===============================================
 
+### Note
+
+This **fork** adds the C implementation of the [SeamCarvingAudio](https://github.com/GiovanniCapizzi/SeamCarvingAudio) algorithm. This is still **WIP** and it may not be integrated in the future. Please check the [SDT](https://github.com/SkAT-VG/SDT) repository of this project and the commit changes.
+
+#### Diffs
+
+I wrote 4 new files:
+
+```
+Pd/seamcarving~-help.pd
+src/Pd/seamcarving~.c
+src/SDT/SDTSeamCarving.c
+src/SDT/SDTSeamCarving.h
+```
+
+I also updated these:
+
+```
+src/Pd/SDT.c
+build/macosx/Makefile
+```
+
+The first one simply introduced the seam carving setup in `purrdata`. The second one has new flags to compile and link [GSL](https://www.gnu.org/software/gsl/) library I used to work with matrices.
+
+#### Todo
+
+- [ ] Update the documentation in `SDTSeamCarving.h` and `SDTSeamCarving.c` 📝;
+- [ ] Fix all build files (rethink the GSL integration)  💥;
+- [ ] Use the same method of erasing a seam (same as [here](https://github.com/GiovanniCapizzi/SeamCarvingAudio/blob/master/fixed_frequencies.py)) 🔨;
+- [ ] Verify and validate the algorithm ✔️; 
+- [ ] Max?
+- [ ] Make a coffee ☕.
+
+
+
 PRECOMPILED BINARIES
 --------------------
 
@@ -34,6 +69,7 @@ COMPILING FROM SOURCE
 
         make clean
 	
+
 **WINDOWS**
 
 To compile the Sound Design Toolkit under Windows, you need a distribution of the
@@ -57,13 +93,14 @@ commands to compile the software in all its flavors (Max package, Pd library, Sh
 
         make clean
 	
+
 **LINUX**
 
 1. In a terminal, type the following commands to build the SDT:
 
         cd build/linux
         make
-        
+    
 2. Install the SDT. By default, the building environment will install a shared library in
 /usr/lib and a collection of PureData externals and patches in /usr/lib/pd/extras/SDT.
 Root privileges may be required to access the default install path. If you want to change

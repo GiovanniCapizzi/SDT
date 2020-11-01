@@ -1,10 +1,10 @@
 SHELL=/bin/bash
 
 CC=clang
-MACARCH=-arch i386 -arch x86_64
+MACARCH=-arch x86_64
 MACVERSION=-isysroot ../../3rdparty/MacOSX10.6.sdk -mmacosx-version-min=10.6
-CFLAGS=$(MACARCH) $(MACVERSION) -Wall -Wno-unknown-pragmas -Werror -g -O3
-LDFLAGS=$(MACARCH) $(MACVERSION) -dynamiclib -headerpad_max_install_names
+CFLAGS=$(MACARCH) $(MACVERSION) -Wall -Wno-unknown-pragmas -Werror -g -O3 -I/usr/local/include
+LDFLAGS=$(MACARCH) $(MACVERSION) -dynamiclib -headerpad_max_install_names -L/usr/local/lib -lgsl -lgslcblas -lm
 SRCDIR=../../src
 
 SDTDIR=$(SRCDIR)/SDT
