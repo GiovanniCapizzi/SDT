@@ -50,11 +50,14 @@ void seamcarving_bang(t_seamcarving *x) {
       SDTSeamCarving_findVerticalSeam(x->seamcarving, i);
     SDTSeamCarving_popMode(x->seamcarving, i, decays, mags, freqs, phases);
     
-    post("phases %f", phases[i]);
-    post("mags %f", mags[i]);
-    post("freqs %f", freqs[i]);
-    post("decays %f", decays[i]);
-    
+    if(freqs[i]){
+      // post("phases %f", phases[i]);
+      post("mags %f", mags[i]);
+      post("freqs %f", freqs[i]);
+      post("decays %f", decays[i]);
+      post("\n");
+    }
+     
     SETFLOAT(&magAtoms[i+1], mags[i]);
     SETFLOAT(&phaseAtoms[i], phases[i]);
     SETFLOAT(&freqAtoms[i], freqs[i]);
