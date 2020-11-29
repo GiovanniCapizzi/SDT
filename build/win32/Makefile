@@ -27,7 +27,7 @@ PDSDKVERSION=0.41.4
 all: core max pd
 
 pd: $(SDTOBJS) $(PDOBJS)
-	$(CC) $(LDFLAGS) -L$(SDTDIR) -L$(PDSDKDIR) $(SDTOBJS) $(PDOBJS) -o $(PDDIR)/SDT.dll -lSDT -lpd
+	$(CC) $(LDFLAGS) -L$(SDTDIR) -L$(PDSDKDIR) $(SDTOBJS) $(PDOBJS) -o $(PDDIR)/SDT.dll -lSDT -lpd -lgsl -lgslcblas -lm
 
 $(PDDIR)/%.o: $(PDDIR)/%.c
 	$(CC) $(CFLAGS) -I$(SRCDIR) -I$(PDSDKDIR) -c $< -o $@
@@ -54,7 +54,7 @@ fileusage:
 	-I$(SRCDIR) -c $(MAXDIR)/SDT_fileusage/SDT_fileusage.c -o $(MAXDIR)/SDT_fileusage.o
 
 core: $(SDTOBJS)
-	$(CC) $(LDFLAGS) $(SDTOBJS) -o $(SDTDIR)/libSDT.dll
+	$(CC) $(LDFLAGS) $(SDTOBJS) -o $(SDTDIR)/libSDT.dll -lgsl -lgslcblas -lm
 
 $(SDTDIR)/%.o: $(SDTDIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
